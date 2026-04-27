@@ -17,8 +17,8 @@ RUN = {
     "0116": {
         "stats": ART / "0116" / "run_0116_planck_polychord_memory_restricted_v2_evidence.stats",
         "equal_weights": ART / "0116" / "run_0116_planck_polychord_memory_restricted_v2_evidence_equal_weights.txt",
-        "diag_gz": ART / "0116" / "run_0116_bml_theory_diag_snapshot_2026-04-27.jsonl.gz",
-        "reject_audit": ART / "0116" / "reject_audit_0116_snapshot_2026-04-27.json",
+        "diag_gz": ART / "0116" / "run_0116_bml_theory_diag_snapshot_latest.jsonl.gz",
+        "reject_audit": ART / "0116" / "reject_audit_0116_snapshot_latest.json",
     },
     "0118": {
         "stats": ART / "0118" / "run_0118_planck_polychord_memory_full_controlled_evidence.stats",
