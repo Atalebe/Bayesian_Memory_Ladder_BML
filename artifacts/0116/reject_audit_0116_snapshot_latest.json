@@ -1,31 +1,32 @@
 {
-  "accepted": 228138,
-  "rejected": 89,
+  "snapshot_date": "2026-04-27",
+  "accepted": 239440,
+  "rejected": 91,
   "bad_lines_skipped": 1,
-  "reject_fraction": 0.0003899626249304421,
+  "reject_fraction": 0.0003799090723121433,
   "reject_reasons": {
-    "memory_solver_failure": 89
+    "memory_solver_failure": 91
   },
   "last_calc_done": {
-    "alpha": 0.1464861346657619,
-    "dt_sec": 2.756954454991501,
+    "alpha": 0.21070130624751965,
+    "dt_sec": 2.7127300160063896,
     "event": "calc_done",
-    "k_star": 0.001372120537380445,
+    "k_star": 0.001502394931265586,
     "memory_cache_hit": false,
-    "shape_ratio_max": 1.0000000000000013,
-    "shape_ratio_min": 0.855527195337194,
-    "sigma_ln": 0.44563444764845145
+    "shape_ratio_max": 1.0000000000000027,
+    "shape_ratio_min": 0.7991163608713855,
+    "sigma_ln": 0.4635041844936827
   },
   "last_spectrum_done": {
     "R_tail_drift_max": 5.083499235897944e-05,
-    "alpha": 0.1464861346657619,
+    "alpha": 0.21070130624751965,
     "event": "spectrum_done",
-    "freeze_ratio_p95": 0.0008221872515379544,
-    "k_star": 0.001372120537380445,
-    "k_time_max_sec": 0.050467617009417154,
+    "freeze_ratio_p95": 0.0008317300682664933,
+    "k_star": 0.001502394931265586,
+    "k_time_max_sec": 0.052181976003339514,
     "method": "DOP853",
     "nfev_max": 1253,
-    "sigma_ln": 0.44563444764845145,
-    "total_wall_sec": 2.7552452989912126
+    "sigma_ln": 0.4635041844936827,
+    "total_wall_sec": 2.7111857359996065
   }
 }
