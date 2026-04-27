@@ -1,0 +1,14 @@
+name: bayesian-memory-ladder
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - scipy
+  - matplotlib
+  - pandas
+  - pyyaml
+  - numba
+  - pip
+  - pip:
+      - getdist

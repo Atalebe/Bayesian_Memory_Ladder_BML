@@ -1,0 +1,73 @@
+output_jsonl: results/public/benchmark_bml_speed.jsonl
+
+theory:
+  camb:
+    nonlinear_mode: none
+    extra_args:
+      lmax: 2500
+      lens_potential_accuracy: 1
+
+  bml.cobaya_bml_theory.bml_theory:
+    kmin: 1.0e-6
+    kmax: 1.0
+    nk: 220
+    spacing: log
+    pivot_k: 0.05
+
+    x_start: 80.0
+    x_end: 1.0e-3
+    method: BDF
+    rtol: 1.0e-6
+    atol: 1.0e-8
+
+    window_enabled: true
+    x_window_enabled: true
+    x0: 1.0
+    sigma_ln_x: 0.6
+
+    alpha_zero_tol: 1.0e-14
+    alpha_soft_cap: 1.2
+    min_shape_ratio: 1.0e-12
+    max_shape_ratio: 1.0e12
+    max_shape_dynamic_range: 1.0e8
+    max_log_slope_abs: 25.0
+
+    theory_diag_log_path: results/public/diag_logs/bml_theory_diag.jsonl
+
+fixed_point:
+  As: 2.0989031673191437e-09
+  ns: 0.965
+  H0: 67.36
+  ombh2: 0.02237
+  omch2: 0.12
+  tau: 0.0544
+  mnu: 0.06
+  omk: 0.0
+
+reference:
+  method: BDF
+  nk: 220
+  rtol: 1.0e-6
+  atol: 1.0e-8
+
+benchmark_points:
+  - name: mild
+    alpha: 0.1
+    k_star: 0.0020
+    sigma_ln: 0.4
+
+  - name: medium
+    alpha: 0.6
+    k_star: 0.0024
+    sigma_ln: 0.4
+
+  - name: strong
+    alpha: 1.2
+    k_star: 0.0028
+    sigma_ln: 0.6
+
+scan:
+  method: [BDF, RK45, DOP853, Radau]
+  nk: [220, 160, 120, 100, 80]
+  rtol: [1.0e-6, 3.0e-6, 1.0e-5]
+  atol: [1.0e-8, 3.0e-8, 1.0e-7]

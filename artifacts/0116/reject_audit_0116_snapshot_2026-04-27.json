@@ -1,0 +1,31 @@
+{
+  "accepted": 228138,
+  "rejected": 89,
+  "bad_lines_skipped": 1,
+  "reject_fraction": 0.0003899626249304421,
+  "reject_reasons": {
+    "memory_solver_failure": 89
+  },
+  "last_calc_done": {
+    "alpha": 0.1464861346657619,
+    "dt_sec": 2.756954454991501,
+    "event": "calc_done",
+    "k_star": 0.001372120537380445,
+    "memory_cache_hit": false,
+    "shape_ratio_max": 1.0000000000000013,
+    "shape_ratio_min": 0.855527195337194,
+    "sigma_ln": 0.44563444764845145
+  },
+  "last_spectrum_done": {
+    "R_tail_drift_max": 5.083499235897944e-05,
+    "alpha": 0.1464861346657619,
+    "event": "spectrum_done",
+    "freeze_ratio_p95": 0.0008221872515379544,
+    "k_star": 0.001372120537380445,
+    "k_time_max_sec": 0.050467617009417154,
+    "method": "DOP853",
+    "nfev_max": 1253,
+    "sigma_ln": 0.44563444764845145,
+    "total_wall_sec": 2.7552452989912126
+  }
+}

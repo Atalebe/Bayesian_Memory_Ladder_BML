@@ -1,0 +1,130 @@
+output: results/public/run_0111_planck_mcmc_dop853_guarded
+
+theory:
+  camb:
+    stop_at_error: false
+    external_primordial_pk: true
+    extra_args:
+      lmax: 2500
+      lens_potential_accuracy: 1
+
+  bml.cobaya_bml_theory.bml_theory:
+    kmin: 1.0e-6
+    kmax: 1.0
+    nk: 120
+    spacing: log
+    pivot_k: 0.05
+
+    x_start: 80.0
+    x_end: 1.0e-3
+    method: DOP853
+    rtol: 1.0e-5
+    atol: 1.0e-7
+
+    window_enabled: true
+    x_window_enabled: true
+    x0: 1.0
+    sigma_ln_x: 0.6
+
+    alpha_zero_tol: 1.0e-14
+    alpha_soft_cap: 1.0
+    min_shape_ratio: 1.0e-12
+    max_shape_ratio: 1.0e12
+    max_shape_dynamic_range: 1.0e8
+    max_log_slope_abs: 25.0
+
+    theory_diag_log_path: results/public/diag_logs/run_0111_bml_theory_diag.jsonl
+
+    max_calculate_wall_time_sec: 90.0
+    solver_wall_time_budget_sec: 45.0
+    per_k_wall_time_budget_sec: 2.0
+
+    cache_memory_spectra: true
+    memory_cache_maxsize: 128
+    cache_round_ndigits: 12
+
+    check_R_conservation: true
+    R_drift_threshold: 1.0e-3
+    R_monitor_nk_smallest: 5
+    R_tail_x_values: [1.0e-2, 5.0e-3, 2.0e-3, 1.0e-3]
+
+likelihood:
+  planck_2018_highl_plik.TTTEEE: null
+  planck_2018_lowl.TT: null
+  planck_2018_lowl.EE: null
+  planck_2018_lensing.clik: null
+
+params:
+  logA:
+    prior: {min: 2.6, max: 3.5}
+    ref: {dist: norm, loc: 3.044, scale: 0.014}
+    proposal: 0.008
+    drop: true
+  As:
+    value: 'lambda logA: 1e-10*np.exp(logA)'
+    latex: A_s
+
+  ns:
+    prior: {min: 0.90, max: 1.05}
+    ref: {dist: norm, loc: 0.965, scale: 0.004}
+    proposal: 0.0015
+    latex: n_s
+
+  H0:
+    prior: {min: 55.0, max: 80.0}
+    ref: {dist: norm, loc: 67.36, scale: 0.5}
+    proposal: 0.35
+    latex: H_0
+
+  ombh2:
+    prior: {min: 0.019, max: 0.025}
+    ref: {dist: norm, loc: 0.02237, scale: 0.00015}
+    proposal: 0.00010
+    latex: \Omega_b h^2
+
+  omch2:
+    prior: {min: 0.09, max: 0.16}
+    ref: {dist: norm, loc: 0.12, scale: 0.001}
+    proposal: 0.0008
+    latex: \Omega_c h^2
+
+  tau:
+    prior: {min: 0.01, max: 0.12}
+    ref: {dist: norm, loc: 0.0544, scale: 0.007}
+    proposal: 0.005
+    latex: \tau_\mathrm{reio}
+
+  mnu: 0.06
+  omk: 0.0
+
+  alpha:
+    prior: {min: 0.0, max: 0.95}
+    ref: {dist: norm, loc: 0.30, scale: 0.08}
+    proposal: 0.035
+    latex: \alpha
+
+  k_star:
+    prior: {min: 0.00125, max: 0.00255}
+    ref: {dist: norm, loc: 0.00190, scale: 0.00018}
+    proposal: 0.00008
+    latex: k_*
+
+  sigma_ln:
+    prior: {min: 0.24, max: 0.54}
+    ref: {dist: norm, loc: 0.40, scale: 0.04}
+    proposal: 0.02
+    latex: \sigma_{\ln}
+
+sampler:
+  mcmc:
+    drag: true
+    oversample_power: 0.4
+    proposal_scale: 1.0
+    learn_proposal: true
+    learn_proposal_Rminus1_max: 30.
+    learn_every: 40d
+    output_every: 60s
+    max_tries: 4000
+    covmat: auto
+    Rminus1_stop: 0.08
+    Rminus1_cl_stop: 0.15

@@ -1,0 +1,4 @@
+accepted=228138
+rejected=89
+reject_fraction=0.0003899626249304421
+memory_solver_failure=89

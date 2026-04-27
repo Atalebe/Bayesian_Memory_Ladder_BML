@@ -1,0 +1,117 @@
+output: results/public/run_0118_planck_polychord_memory_full_controlled_evidence
+
+theory:
+  camb:
+    stop_at_error: false
+    external_primordial_pk: true
+    extra_args:
+      lmax: 2500
+      lens_potential_accuracy: 1
+
+  bml.cobaya_bml_theory.bml_theory:
+    kmin: 1.0e-6
+    kmax: 1.0
+    nk: 90
+    spacing: log
+    pivot_k: 0.05
+
+    x_start: 80.0
+    x_end: 1.0e-3
+    method: DOP853
+    rtol: 3.0e-5
+    atol: 3.0e-7
+
+    window_enabled: true
+    x_window_enabled: true
+    x0: 1.0
+    sigma_ln_x: 0.6
+
+    alpha_zero_tol: 1.0e-14
+    alpha_soft_cap: 1.2
+    min_shape_ratio: 1.0e-12
+    max_shape_ratio: 1.0e12
+    max_shape_dynamic_range: 1.0e8
+    max_log_slope_abs: 25.0
+
+    theory_diag_log_path: results/public/diag_logs/run_0118_bml_theory_diag.jsonl
+
+    check_R_conservation: true
+    R_drift_threshold: 1.0e-3
+    R_monitor_nk_smallest: 4
+    R_tail_x_values: [1.0e-2, 5.0e-3, 1.0e-3]
+
+likelihood:
+  planck_2018_highl_plik.TTTEEE: null
+  planck_2018_lowl.TT: null
+  planck_2018_lowl.EE: null
+  planck_2018_lensing.clik: null
+
+params:
+  logA:
+    prior: {min: 3.010, max: 3.090}
+    ref: {dist: norm, loc: 3.045, scale: 0.010}
+    proposal: 0.004
+    drop: true
+  As:
+    value: 'lambda logA: 1e-10*np.exp(logA)'
+    latex: A_s
+
+  ns:
+    prior: {min: 0.955, max: 0.972}
+    ref: {dist: norm, loc: 0.964, scale: 0.003}
+    proposal: 0.0012
+    latex: n_s
+
+  H0:
+    prior: {min: 66.60, max: 68.10}
+    ref: {dist: norm, loc: 67.30, scale: 0.30}
+    proposal: 0.10
+    latex: H_0
+
+  ombh2:
+    prior: {min: 0.02215, max: 0.02265}
+    ref: {dist: norm, loc: 0.02238, scale: 0.00008}
+    proposal: 0.00004
+    latex: \Omega_b h^2
+
+  omch2:
+    prior: {min: 0.1185, max: 0.1212}
+    ref: {dist: norm, loc: 0.1200, scale: 0.0005}
+    proposal: 0.00020
+    latex: \Omega_c h^2
+
+  tau:
+    prior: {min: 0.050, max: 0.068}
+    ref: {dist: norm, loc: 0.055, scale: 0.004}
+    proposal: 0.0015
+    latex: \tau_\mathrm{reio}
+
+  mnu: 0.06
+  omk: 0.0
+
+  alpha:
+    prior: {min: 0.03, max: 0.65}
+    ref: {dist: norm, loc: 0.26, scale: 0.08}
+    proposal: 0.025
+    latex: \alpha
+
+  k_star:
+    prior: {min: 0.00120, max: 0.00235}
+    ref: {dist: norm, loc: 0.00170, scale: 0.00018}
+    proposal: 0.00008
+    latex: k_*
+
+  sigma_ln:
+    prior: {min: 0.22, max: 0.52}
+    ref: {dist: norm, loc: 0.35, scale: 0.05}
+    proposal: 0.02
+    latex: \sigma_{\ln}
+
+sampler:
+  polychord:
+    nlive: 160
+    num_repeats: 12
+    precision_criterion: 0.3
+    boost_posterior: 0.0
+    feedback: 1
+    max_ndead: -1
